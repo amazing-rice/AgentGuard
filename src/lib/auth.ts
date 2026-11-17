@@ -18,16 +18,41 @@ function hashToken(token: string): string {
   return createHash("sha256").update(token).digest("hex");
 }
 
+
 export function isSameOriginRequest(request: Request): boolean {
   const origin = request.headers.get("origin");
+
+  // 保留原有行为：没有 Origin 的请求交由后续认证和校验处理
   if (!origin) return true;
 
   try {
-    return new URL(origin).origin === new URL(request.url).origin;
+    const browserOrigin = new URL(origin).origin;
+    const requestOrigin = new URL(request.url).origin;
+
+    // 本地开发及没有反向代理时的正常同源请求
+    if (browserOrigin === requestOrigin) {
+      return true;
+    }
+
+    // Railway 反向代理环境：只允许显式配置的公网域名
+    const publicOrigin = process.env.AGENTGUARD_PUBLIC_ORIGIN;
+
+    if (!publicOrigin) {
+      return false;
+    }
+
+    const configuredUrl = new URL(publicOrigin);
+
+    // 生产公网地址必须使用 HTTPS
+    return (
+      configuredUrl.protocol === "https:" &&
+      browserOrigin === configuredUrl.origin
+    );
   } catch {
     return false;
   }
 }
+
 
 export async function createUserSession(userId: string): Promise<void> {
   const token = randomBytes(32).toString("base64url");
