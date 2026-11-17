@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         String    @default("USER")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  sessions     Session[]
+  lessonProgress    LessonProgress[]
+  challengeProgress ChallengeProgress[]
+  experimentRecords ExperimentRecord[]
+
+  @@index([createdAt])
+  @@index([role])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+/// 学习记录：每门课每个用户只有一行，保留最高正确题数。
+model LessonProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  lessonId    String
+  bestScore   Int      @default(0)
+  lastScore   Int      @default(0)
+  attempts    Int      @default(0)
+  completedAt DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId, updatedAt])
+}
+
+/// 挑战记录：真实答题结果写入数据库，重复挑战时更新最高分。
+model ChallengeProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  challengeId String
+  bestScore   Int      @default(0)
+  lastScore   Int      @default(0)
+  attempts    Int      @default(0)
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, challengeId])
+  @@index([userId, updatedAt])
+}
+
+/// 新实验记录只存当前登录用户的虚构沙箱结果；不再公开全局 runs.json。
+model ExperimentRecord {
+  runId      String   @id
+  userId     String
+  mode       String
+  variant    String
+  source     String
+  status     String
+  proposed   Int      @default(0)
+  blocked    Int      @default(0)
+  completed  Boolean  @default(false)
+  runJson    String
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([source, createdAt])
+}
+
+/// AI 安全助教每日调用配额，scopeId 区分 user:{uid} 与 global。
+/// 按 UTC 日期滚动，保留 token 数量，不保存任何问题或模型回复正文。
+model AiTutorDailyQuota {
+  id           String   @id
+  day          String
+  requests     Int      @default(0)
+  inputTokens  Int      @default(0)
+  outputTokens Int      @default(0)
+  updatedAt    DateTime @updatedAt
+
+  @@index([day])
+}

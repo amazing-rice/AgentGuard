@@ -1,0 +1,11 @@
+/* AgentGuard V2.7.1: session status, compact mobile FAB, and result-safe visibility */
+.agf-session-retry { position:fixed;bottom:23px;right:24px;z-index:1098;border:1px solid #cbe8df;background:#f1faf6;color:#237a6e;font-size:11px;font-weight:800;border-radius:999px;padding:11px 14px;cursor:pointer;box-shadow:0 8px 25px #134f4e19; }
+.agf-session-retry:focus-visible {outline:3px solid #f4ad55;outline-offset:3px;}
+@media(max-width:600px){
+ .agf-launcher { width:52px!important;height:52px!important;min-height:52px!important;border-radius:50%!important;padding:0!important;right:max(13px,env(safe-area-inset-right))!important;bottom:max(14px,env(safe-area-inset-bottom))!important;justify-content:center!important;gap:0!important; }
+ .agf-launch-text {display:none!important;}
+ .agf-launch-icon {width:40px!important;height:40px!important;}
+ html.agf-results-visible .agf-launcher {display:none!important;}
+ .agf-session-retry {right:13px;bottom:max(14px,env(safe-area-inset-bottom));max-width:150px;font-size:10px;}
+ .agf-panel {bottom:max(8px,env(safe-area-inset-bottom))!important;max-height:calc(100dvh - 16px);}
+}

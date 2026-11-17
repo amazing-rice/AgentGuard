@@ -1,0 +1,38 @@
+﻿# Dependencies and build
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+*.log
+
+# Environment variables and secrets
+.env*
+!.env.example
+
+# Local database and runtime data
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+data/runtime/
+
+# Development backups
+backup*/
+src_before_*/
+v271_payload/
+
+# Harness evidence
+harness-evidence/
+
+# Old patch archives
+*.zip
+*.rar
+
+# Editor and system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+prisma/schema_before_*.prisma
+prisma/schema_before_*.prisma

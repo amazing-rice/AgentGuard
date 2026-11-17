@@ -1,0 +1,35 @@
+/* AgentGuard V2.6 · AI 安全助教（独立样式、避免影响现有页面） */
+.agt-root { background:#fbfcfd; color:#1d3f54; }
+.agt-hero { background:radial-gradient(circle at 83% 32%,#ccf9ed,transparent 31%),linear-gradient(118deg,#effaf8,#eef5ff); border-bottom:1px solid #deeee9; padding:64px 0; }
+.agt-hero-content { display:grid; grid-template-columns:1.35fr .65fr; align-items:center; gap:30px; }
+.agt-hero h1 { font-size:clamp(32px,4.1vw,54px); line-height:1.27; margin:14px 0; letter-spacing:-1px; font-weight:950; }
+.agt-hero h1 span { color:#069a87; }
+.agt-hero p { color:#66828f; font-size:15px; line-height:1.9; max-width:700px; }
+.agt-tags { display:flex; gap:10px; flex-wrap:wrap; margin-top:21px; }
+.agt-tags span { display:inline-flex; align-items:center; gap:7px; background:#fff; border:1px solid #dcece7; padding:8px 12px; border-radius:50px; font-weight:800; font-size:12px; color:#44746b; }
+.agt-hero-icon { background:#fff; border:1px solid #c5f4df; box-shadow:17px 17px 0 #bdece1; width:207px; height:207px; max-width:100%; margin:auto; border-radius:48px; transform:rotate(6deg); display:flex; justify-content:center; align-items:center; flex-direction:column; gap:12px; text-align:center; }
+.agt-hero-icon span { font-size:78px; }.agt-hero-icon strong { color:#169d89; font-size:13px; letter-spacing:3px; line-height:1.3; }
+.agt-body { padding-top:30px; padding-bottom:70px; }
+.agt-info-bar { border:1px solid #d8ede6; background:#effbf6; padding:16px 20px; border-radius:14px; display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; color:#3e8275; font-size:12px; font-weight:750; }
+.agt-info-bar>div { display:flex; align-items:center; gap:9px; }
+.agt-layout { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr); gap:20px; margin-top:22px; align-items:start; }
+.agt-chat { background:#fff; border:1px solid #e0e9ed; border-radius:24px; overflow:hidden; box-shadow:0 14px 32px #23536b0b; }
+.agt-chat-title { display:flex; align-items:center; gap:12px; border-bottom:1px solid #e6eeee; padding:20px 23px; }
+.agt-chat-title strong { display:block; font-size:15px; }.agt-chat-title small { display:block; color:#8398a2; font-size:11px; margin-top:4px; }
+.agt-avatar { background:#ddf8ec; color:#0a9d84; width:46px; height:46px; display:grid; place-items:center; border-radius:15px; }
+.agt-live { margin-left:auto; font-size:10px; color:#068c7b; background:#e3f9f1; padding:7px 10px; border-radius:20px; font-weight:950; white-space:nowrap; }
+.agt-messages { min-height:340px; max-height:630px; overflow-y:auto; display:flex; flex-direction:column; gap:15px; padding:25px 22px; }
+.agt-message { display:flex; align-items:flex-start; gap:10px; max-width:95%; }
+.agt-message-icon { width:33px; height:33px; flex-shrink:0; background:#e6f7f2; border-radius:11px; display:grid; place-items:center; }
+.agt-message p { white-space:pre-wrap; overflow-wrap:anywhere; margin:0; padding:14px 17px; line-height:1.85; font-size:13px; color:#496778; background:#f2f8f7; border:1px solid #e1eeea; border-radius:6px 17px 17px 17px; }
+.agt-user { align-self:flex-end; flex-direction:row-reverse; }.agt-user .agt-message-icon { background:#e8eefb; }.agt-user p { background:#eef6ff; border-color:#dceafe; border-radius:17px 6px 17px 17px; }
+.agt-usage { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin:0 20px 15px; padding:12px 15px; background:#effaf7; color:#528375; border:1px solid #d8efe5; border-radius:12px; font-size:11px; }.agt-usage strong { margin-left:auto; color:#067d6d; }
+.agt-error { margin:0 20px 15px; padding:12px 14px; display:flex; align-items:center; gap:10px; color:#ae5d45; background:#fff0e9; border:1px solid #ffd3c4; border-radius:12px; font-size:12px; }
+.agt-login-warning { background:#fff8e8; margin:0 20px 15px; border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; font-size:12px; color:#956d30; }.agt-login-warning a { font-weight:900; display:inline-flex; align-items:center; gap:5px; }
+.agt-form { border-top:1px solid #e7eeee; padding:19px 22px 22px; display:grid; gap:10px; }.agt-form label { font-size:13px; font-weight:850; }.agt-form textarea { display:block; width:100%; padding:14px 16px; color:#244b5d; border:1px solid #d6e4e7; border-radius:14px; resize:vertical; font:inherit; font-size:13px; line-height:1.7; outline:none; }.agt-form textarea:focus { border-color:#11a18d; box-shadow:0 0 0 3px #d5f6ea; }.agt-form>div { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }.agt-form>div>span { font-size:11px; color:#8aa0a9; }.agt-form button:disabled { opacity:.55; cursor:not-allowed; }
+.agt-loading { display:flex; align-items:center; gap:9px; }.agt-spin { animation:agt-spin 1s linear infinite; } @keyframes agt-spin { to { transform:rotate(360deg); } }
+.agt-sidebar { display:grid; gap:18px; }.agt-side-panel { background:#fff; border:1px solid #e1e9ec; border-radius:20px; padding:23px; }.agt-side-title { display:flex; align-items:center; gap:10px; }.agt-side-title svg { color:#119e88; }.agt-side-panel h2,.agt-side-panel h3 { margin:0; font-size:17px; font-weight:950; }.agt-side-panel>svg { color:#0b9c84; margin-bottom:10px; }.agt-side-panel p { font-size:12px; color:#77909b; line-height:1.9; margin:12px 0; }.agt-samples { display:grid; gap:9px; margin-top:18px; }.agt-samples button { display:flex; text-align:left; justify-content:space-between; align-items:center; gap:9px; border:1px solid #e0eeeb; border-radius:12px; background:#f7fcfa; padding:12px 14px; font-size:12px; font-weight:800; color:#416d75; cursor:pointer; }.agt-samples button:hover { background:#e8faf1; border-color:#a7e2d2; }.agt-samples button svg { flex-shrink:0; color:#089982; }
+.agt-side-note { background:#f0faf5; }.agt-side-note a { display:inline-flex; align-items:center; gap:6px; color:#098d7c; font-size:12px; font-weight:900; }.agt-side-cost { background:#fff9ef; border-color:#f2e4c6; }.agt-side-cost>svg { color:#e3a34c; }.agt-side-cost small { color:#a28e70; font-size:11px; line-height:1.8; display:block; }
+@media(max-width:860px) { .agt-layout { grid-template-columns:1fr; }.agt-hero-content { grid-template-columns:1fr; }.agt-hero-icon { display:none; } }
+@media(max-width:550px) { .agt-hero { padding:42px 0; }.agt-hero h1 { font-size:34px; }.agt-chat-title { padding:15px; }.agt-messages { min-height:290px; padding:18px 14px; }.agt-form { padding:18px 14px; }.agt-chat-title small { font-size:10px; }.agt-side-panel { padding:19px; } }
+@media(prefers-reduced-motion:reduce) { .agt-spin { animation:none; } }
